@@ -1,5 +1,5 @@
 ---
-title: "Titre"
+title: "Activité sur le fondements et les enjeux dans l'interprétation des outputs d'une méta-analyse"
 author: |
   | **Mattia A. Fritz**
   | \small TECFA, Université de Genève
@@ -16,12 +16,12 @@ output:
     latex_engine: xelatex
     extra_dependencies: ["flafter"]
     includes:
-      in_header: "settings/preamble.tex"
-      before_body: "settings/before-body.tex"
+      in_header: "../settings/preamble.tex"
+      before_body: "../settings/before-body.tex"
       #after_body: "doc-suffix.tex"
-bibliography: bib/references.bib
-csl: settings/apa.csl
-abstract: "This is my abstract."
+bibliography: ../bib/references.bib
+csl: ../settings/apa.csl
+abstract: "Cette activité propose"
 ---
 
 ```{r setup, include=FALSE}
