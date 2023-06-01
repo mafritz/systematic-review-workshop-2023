@@ -1,3 +1,5 @@
+# Le script utilise tibble et meta qui peuvent être installés avec install.packages("meta", "tibble")
+
 set.seed(2023)
 library(tibble)
 library(meta)
