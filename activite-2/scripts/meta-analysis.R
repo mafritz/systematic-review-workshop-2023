@@ -2,6 +2,7 @@ set.seed(2023)
 library(tibble)
 library(meta)
 
+# Vous pouvez modifier les données dans ce data.frame
 
 data_meta_analysis <- tibble::tribble(
   ~author,         ~n.e,    ~mean.e, ~sd.e,     ~n.c, ~mean.c, ~sd.c,
@@ -14,6 +15,7 @@ data_meta_analysis <- tibble::tribble(
   "Expérience 7",    30,      112.1,  14.7,       30,   109.1,  16.3,
 )
 
+# Ensuite vous exécuter la fonction pour produire la méta-analyse
 
 m.cont <- metacont(n.e = n.e,
                    mean.e = mean.e,
@@ -33,19 +35,16 @@ m.cont <- metacont(n.e = n.e,
                    title = "Exemple de méta-analysis"
 )
 
+# Enfin vous produisez le forest plot qui s'affiche dans le panel "Plots" si vous utilisez RStudio
+# Vous pouvez modifier les paramètres common et random pour décider le type d'effet à calculer
+
 forest.meta(
   m.cont, digits = 2,
   digits.se = 2,
   digits.stat = 2,
-  prediction = TRUE
-)
-
-
-# Produce funnel plot
-funnel.meta(m.cont,
-            xlim = c(-.8, 1.5),
-            studlab = TRUE,
-            common = FALSE,
-            cex.studlab = 1.3
+  prediction = TRUE,
+  common = FALSE,
+  random = TRUE,
+  fontsize = 8
 )
 
