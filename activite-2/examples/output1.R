@@ -2,27 +2,30 @@ set.seed(46378)
 library(dplyr)
 library(meta)
 
-studies_n <- 10
-samples_n <- c(10, 25, 50, 75)
 
-e_mean = 115
-e_sd = 7
+# Output 1 ----------------------------------------------------------------
 
-c_mean = 100
-c_sd = 7
+n_studies_1 <- 10
+n_samples_1 <- c(10, 15, 25)
 
-output1_data <- tibble(
-    author = paste("Contribution", 1:studies_n),
-    n.e = sample(samples_n, studies_n, replace = TRUE),
-    mean.e = rnorm(studies_n, e_mean, e_sd/2),
-    sd.e = rnorm(studies_n, e_sd, e_sd/2),
+e_mean_1 = 115
+e_sd_1 = 7
+
+c_mean_1 = 100
+c_sd_1 = 7
+
+data_1 <- tibble(
+    author = paste("Contribution", 1:n_studies_1),
+    n.e = sample(n_samples_1, n_studies_1, replace = TRUE),
+    mean.e = rnorm(n_studies_1, e_mean_1, e_sd_1/2),
+    sd.e = rnorm(n_studies_1, e_sd_1, e_sd_1/2),
     n.c = n.e,
-    mean.c = rnorm(studies_n, c_mean, c_sd/2),
-    sd.c = rnorm(studies_n, c_sd, c_sd/2)
+    mean.c = rnorm(n_studies_1, c_mean_1, c_sd_1/2),
+    sd.c = rnorm(n_studies_1, c_sd_1, c_sd_1/2)
   )
 
 
-output1_analysis <- metacont(
+analysis_1 <- metacont(
                     n.e = n.e,
                     mean.e = mean.e,
                     sd.e = sd.e,
@@ -30,31 +33,33 @@ output1_analysis <- metacont(
                     mean.c = mean.c,
                     sd.c = sd.c,
                     studlab = author,
-                    data = output1_data,
                     sm = "SMD",
                     method.smd = "Hedges",
                     fixed = TRUE,
-                    random = TRUE,
+                    random = FALSE,
                     method.tau = "REM",
                     hakn = TRUE,
                     prediction = TRUE,
-                    title = "Exemple de méta-analysis"
+                    title = "Exemple de méta-analysis",
+                    data = data_1,
 )
 
-output1_forest <- forest.meta(
-  output1_analysis,
+forest.meta(
+  analysis_1,
   digits = 2,
   digits.se = 2,
   digits.stat = 2,
   prediction = TRUE,
   common = TRUE,
-  random = FALSE
+  random = FALSE,
+  hetstat = FALSE
 )
 
 
 # Produce funnel plot
-funnel.meta(output1_analysis,
+funnel.meta(analysis_1,
             studlab = TRUE,
-            common = FALSE
+            common = TRUE,
+            random = FALSE
 )
 

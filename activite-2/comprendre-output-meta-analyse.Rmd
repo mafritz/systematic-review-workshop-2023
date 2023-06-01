@@ -25,36 +25,51 @@ abstract: "Cette activité propose"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+library(here)
+library(tibble)
+library(metafor)
+knitr::opts_chunk$set(
+  echo = FALSE, 
+  warning = FALSE,
+  out.width = "100%",
+  fig.align = "center",
+  fig.height = 2.5
+)
 Sys.setlocale("LC_ALL", "French")
 source(here::here("settings", "custom.R"))
+source(here::here("activite-2/examples/functions.R"))
+source(here::here("activite-2/examples/output1.R"))
+source(here::here("activite-2/examples/output2.R"))
 ```
 
-# Test 
-```{r}
-n <- 200
-data <- tibble(
-  id = paste0("P", 1:n),
-  age = sample(18:65, n, replace = TRUE),
-  time = rnorm(n, 60, 10),
-  condition = sample(c("Control", "Treatment", "Alternative"), n, replace = TRUE)
-)
+# Introduction
 
-data |> 
-  custom_table(caption_text = "What happens in here?")
+# Premier Output
+
+Regardez l'output d'une méta-analyse simulée comportant `r nrow(data_1)` contributions et identifiez les éléments d'intérêt indiqués ci-dessous.
+
+```{r output1, fig.cap="Forest plot d'une méta-analyse simulée"}
+print_forest(analysis_1, com = TRUE, ran = FALSE)
 ```
 
+1.  Quel type d'effet est calculé dans cette méta-analyse? Qu'est-ce que cela signifie?
+2.  Quelle est la contribution avec la moyenne du groupe expérimentale la plus élevée?
+3.  Quelle est la contribution avec la moyenne du groupe contrôle la plus basse?
+4.  Quelle contribution a la différence moyenne standardisée la plus élevée?
+5.  Est-ce que la contribution avec la différence moyenne standardisée la plus élevée est la même du point 2?
+6.  Dans quelle contribution la différence moyenne standardisée présente le plus de variabilité?
+7.  Quel est la taille de l'effet cumulé dans cette analyse?
+8.  Que pouvez-vous conclure depuis la distribution des effets dans ce forest plot?
+9.  Qu'est-ce qui vous indique l'intervalle de prédiction dans ce forest plot?
 
-# Another test
-```{r}
-#| fig.cap = "Test"
-ggplot(data, aes(x = condition, y = time, color = condition)) +
-  geom_jitter(alpha = 0.4) +
-  stat_summary(fun.data = mean_cl_normal, geom = "errorbar", aes(group = condition, color = condition), width = 0.4) +
-  stat_summary(fun = mean, geom = "point", aes(group = condition, color = condition), size = 3, shape = 15) +
-  theme(
-    legend.position = "none"
-  ) +
-  NULL
+# Deuxième Output
+
+Regardez l'output d'une autre méta-analyse simulée comportant `r nrow(data_2)` contributions et identifiez les éléments d'intérêt indiqués ci-dessous.
+
+```{r output2, fig.cap="Forest plot d'une méta-analyse simulée"}
+print_forest(analysis_2, com = FALSE, ran = TRUE, het = TRUE)
 ```
 
+1.  Quel type d'effet est calculé dans cette méta-analyse? Qu'est-ce que cela signifie?
+2.  Qu'est-ce que vous pouvez conclure depuis la distribution des effets des contributions? Qu'est-ce qui pourrait expliquer ce pattern?
+3.  Quelle est la conséquence sur les intervalles de prédictions?
