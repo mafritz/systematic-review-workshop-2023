@@ -125,9 +125,13 @@ print_forest(analysis_3, com = FALSE, ran = TRUE, het = TRUE)
 
 \newpage
 
-# Vraie Méta-Analyse
+# Activités complémentaires
 
-Enfin, trouvez une méta-analyse de votre intérêt et essayez d'identifier les éléments d'intérêt suivants:
+Vous pouvez choisir entre les deux activités complémentaires suivantes.
+
+## Identifier les éléments dans une méta-analyse publiée
+
+Cette activité consiste à trouver dans la littérature existante une méta-analyse de votre intérêt et identifier les éléments d'intérêt suivants:
 
 -   À quoi correspond la SMD concrètement? Quelle est la différence entre les deux groupes? Quelle est l'outcome sur laquelle la différence est mesurée?
 
@@ -138,6 +142,12 @@ Enfin, trouvez une méta-analyse de votre intérêt et essayez d'identifier les 
     -   La présence, la direction, la magnitude et l'incertitude autour de l'effet combiné
 
     -   L'hétérogénéité entre contributions
+
+## Simuler des résultats avec un script R
+
+Vous pouvez utiliser un script du langage de programmation R pour simuler les données de différentes contributions et produire le output d'une méta-analyse. Les instructions sont directement disponibles dans le script.
+
+-   [Lien vers le script](https://github.com/mafritz/systematic-review-workshop-2023/blob/main/activite-2/scripts/meta-analysis.R)
 
 # Conclusion
 
